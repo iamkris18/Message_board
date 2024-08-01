@@ -1,20 +1,37 @@
-<h2> <%= @message.title   %>   </h2>
-<p>Posted by <%= @message.user.email  %> updated <%=time_ago_in_words(@message.updated_at)%> ago</p>
-<p><%=   @message.description   %></p>
+<!-- app/views/messages/show.html.erb -->
+<div class="container">
+  <h1 class="my-4"><%= @message.title %></h1>
 
+  <p class="text-muted">
+    Posted by <%= @message.user.email %> | Updated <%= time_ago_in_words(@message.updated_at) %> ago
+  </p>
 
-<h3>Comments:</h3>
-<%=render @message.comments%>
+  <div class="mb-4">
+    <p><%= @message.description %></p>
+  </div>
 
-<h3>Reply to Message:</h3>
-<%=render 'comments/form' %>
-<%=link_to 'back',root_path%>
-<%if user_signed_in?%>
-<%if @message.user_id == current_user.id%>
-<%=link_to 'edit',edit_message_path%>
+  <h3 class="my-4">Comments:</h3>
+  <% if @message.comments.any? %>
+    <ul class="list-unstyled">
+      <%= render @message.comments %>
+    </ul>
+  <% else %>
+    <p>No comments yet.</p>
+  <% end %>
 
-<%#=link_to 'Delete',message_path(@message), method: :delete,data: { confirm: "Are u sure?"}%>
-<%end%>
+  <h3 class="my-4">Reply to Message:</h3>
+  <%= render 'comments/form' %>
 
-<%end%>
+  <div class="mt-3">
+    <%= link_to 'Back to Messages', root_path, class: "btn btn-secondary" %>
+  </div>
 
+  <% if user_signed_in? %>
+    <% if @message.user_id == current_user.id %>
+      <div class="mt-3">
+        <%= link_to 'Edit', edit_message_path(@message), class: "btn btn-primary" %>
+        <%= link_to 'Delete', message_path(@message), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger ms-2" %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

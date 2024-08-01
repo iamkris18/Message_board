@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
     before_action :find_message, only: [:show, :edit, :update, :destroy]
 
 
+
     def index
         @messages=Message.all.order("created_at DESC")
     end
@@ -17,7 +18,7 @@ class MessagesController < ApplicationController
     def create
         @message=current_user.messages.build(message_params)
         if @message.save
-            redirect_to root_path
+            redirect_to root_path, notice: 'Message was successfully created.'
         else
             render 'new'
         end
@@ -32,14 +33,14 @@ class MessagesController < ApplicationController
     end
     def update
         if @message.update(message_params)
-            redirect_to message_path
+            redirect_to message_pathnotice: 'Message was successfully updated.'
         else
             render 'edit'
         end
     end
     def destroy
         @message.destroy
-        redirect_to root_path
+        redirect_to root_path, notice: 'nope'
 
 
     end
