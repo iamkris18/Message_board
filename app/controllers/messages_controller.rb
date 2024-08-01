@@ -33,7 +33,7 @@ class MessagesController < ApplicationController
     end
     def update
         if @message.update(message_params)
-            redirect_to message_pathnotice: 'Message was successfully updated.'
+            redirect_to message_path, notice: 'Message was successfully updated.'
         else
             render 'edit'
         end
