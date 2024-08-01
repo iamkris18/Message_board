@@ -1,6 +1,7 @@
-<h1>These are the messages</h1>
+<h1>These are the messages </h1>
 </br></br>
 <% @messages.each do |message|%>
     <h2>   <%=message.title%>     </h2>
     <%=link_to 'view message', message_path(message)%>
+    created by...<%=message.user.email%>
     <%end%>

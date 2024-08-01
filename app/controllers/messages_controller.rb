@@ -1,5 +1,5 @@
 class MessagesController < ApplicationController
-
+    before_action :authenticate_user!, only: [:new, :create]
     before_action :find_message, only: [:show, :edit, :update, :destroy]
 
 
@@ -29,8 +29,6 @@ class MessagesController < ApplicationController
     end
     def edit
 
-
-
     end
     def update
         if @message.update(message_params)
@@ -45,13 +43,6 @@ class MessagesController < ApplicationController
 
 
     end
-
-
-  
-
-
-
-
 
     private
 
