@@ -33,14 +33,14 @@ class MessagesController < ApplicationController
     end
     def update
         if @message.update(message_params)
-            redirect_to message_pathnotice: 'Message was successfully updated.'
+            redirect_to message_path, notice: 'Message was successfully updated.'
         else
             render 'edit'
         end
     end
     def destroy
         @message.destroy
-        redirect_to root_path, notice: 'nope'
+        redirect_to root_path, notice: 'Message Deleted'
 
 
     end
