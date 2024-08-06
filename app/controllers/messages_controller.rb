@@ -40,7 +40,7 @@ class MessagesController < ApplicationController
     end
     def destroy
         @message.destroy
-        redirect_to root_path, notice: 'nope'
+        redirect_to root_path, notice: 'Deleted Successfully'
 
 
     end

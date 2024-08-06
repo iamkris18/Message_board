@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
 
       def destroy
         @comment.destroy
-        redirect_to_message_path(@message)
+        redirect_to message_path(@message)
 
       end
 
